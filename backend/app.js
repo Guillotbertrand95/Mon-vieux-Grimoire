@@ -1,9 +1,9 @@
 const express = require("express");
-
+const path = require("path");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const booksRoutes = require("./routes/books"); // 👈 ajouté
-
+const imageRoutes = require("./routes/image");
 mongoose
 	.connect(
 		"mongodb+srv://guillotbertrand95:967996GLTbg44@cluster0.5i535hf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -29,4 +29,6 @@ app.use((req, res, next) => {
 
 app.use("/api/books", booksRoutes); // 👈 pour les routes /api/books
 app.use("/api/auth", userRoutes);
+app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/api/image", imageRoutes);
 module.exports = app;
