@@ -15,9 +15,9 @@ router.post("/upload", upload, compressImages, (req, res) => {
 			message: "L'image n'a pas pu être compressée ou uploadée.",
 		});
 	}
-
-	console.log("✔️ Image compressée avec succès :", compressedPath);
-
+	router.get("/test", (req, res) => {
+		res.status(200).json({ message: "Route image OK" });
+	});
 	res.status(200).json({
 		message: "Image uploadée et compressée !",
 		chemin: compressedPath,
