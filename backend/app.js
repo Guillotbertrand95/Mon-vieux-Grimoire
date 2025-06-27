@@ -5,9 +5,7 @@ const userRoutes = require("./routes/user");
 const booksRoutes = require("./routes/books"); // 👈 ajouté
 const imageRoutes = require("./routes/image");
 mongoose
-	.connect(
-		"mongodb+srv://guillotbertrand95:967996GLTbg44@cluster0.5i535hf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-	)
+	.connect(process.env.MONGO_URI)
 	.then(() => console.log("Connexion à MongoDB réussie !"))
 	.catch(() => console.log("Connexion à MongoDB échouée !"));
 
@@ -27,7 +25,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use("/api/books", booksRoutes); // 👈 pour les routes /api/books
+app.use("/api/books", booksRoutes); //  pour les routes /api/books
 app.use("/api/auth", userRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/image", imageRoutes);
