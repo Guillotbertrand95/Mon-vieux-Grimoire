@@ -1,8 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
-const booksRoutes = require("./routes/books"); // 👈 ajouté
+const booksRoutes = require("./routes/books"); //  ajouté
 const imageRoutes = require("./routes/image");
 mongoose
 	.connect(process.env.MONGO_URI)
@@ -25,7 +26,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use("/api/books", booksRoutes); //  pour les routes /api/books
+app.use("/api/books", booksRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/image", imageRoutes);

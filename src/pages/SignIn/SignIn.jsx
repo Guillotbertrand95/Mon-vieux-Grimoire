@@ -48,9 +48,12 @@ function SignIn({ setUser }) {
 				navigate("/");
 			}
 		} catch (err) {
-			console.log(err);
-			setNotification({ error: true, message: err.message });
-			console.log("Some error occured during signing in: ", err);
+			console.log("Erreur Axios :", err);
+			setNotification({
+				error: true,
+				message:
+					err.response?.data?.message || "Une erreur est survenue",
+			});
 		} finally {
 			setIsLoading(false);
 		}
