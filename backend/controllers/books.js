@@ -7,7 +7,7 @@ const path = require("path");
 exports.createBook = (req, res, next) => {
 	try {
 		console.log("=== req.file ===");
-		console.log(req.file); // Voir les infos du fichier uploadé, notamment compressedPath
+		console.log(req.file); 
 
 		const bookObject = JSON.parse(req.body.book);
 		delete bookObject._id;
